@@ -77,6 +77,8 @@ MuTTY/
 - Die App wird ad-hoc signiert (nicht mit einer Apple-Entwickler-ID). Beim
   ersten Start ggf. Rechtsklick auf die App → „Öffnen" wählen.
 
+<img width="896" height="554" alt="image" src="https://github.com/user-attachments/assets/fb14dd85-02b7-4d63-a1f7-6c383c1b8d2f" />
+
 
 # MuTTY
 MuTTY stands for -MacOS ultra teletypewriter-
@@ -97,7 +99,7 @@ Clicking “Connect” opens the SSH session in Terminal.app
 Profiles are stored as JSON at
 ~/Library/Application Support/MuTTY/profiles.json
 
-## Security
+### Security
 Passwords are deliberately not stored. Authentication is handled via
 the SSH agent, the macOS Keychain, or – if no credentials are configured –
 the regular login prompt in Terminal. Only the SSH key path is stored,
