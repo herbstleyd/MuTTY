@@ -1,5 +1,7 @@
 # MuTTY
 
+MuTTY steht für -MacOS ultra teletypewriter-
+
 Eine native macOS-App zum Verwalten und Starten von SSH-Verbindungen –
 ähnlich dem Profil-Manager von PuTTY.
 
