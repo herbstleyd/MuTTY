@@ -76,3 +76,78 @@ MuTTY/
   macOS läuft.
 - Die App wird ad-hoc signiert (nicht mit einer Apple-Entwickler-ID). Beim
   ersten Start ggf. Rechtsklick auf die App → „Öffnen" wählen.
+
+
+# MuTTY
+MuTTY stands for -MacOS ultra teletypewriter-
+
+A native macOS app for managing and launching SSH connections –
+similar to PuTTY’s profile manager.
+
+## Features
+Create, edit, duplicate, and delete any number of connection profiles
+
+Store per profile: name, group, host, port, user, SSH key, and
+additional SSH arguments
+
+Group view in the sidebar + search field for filtering
+
+Clicking “Connect” opens the SSH session in Terminal.app
+
+Profiles are stored as JSON at
+~/Library/Application Support/MuTTY/profiles.json
+
+## Security
+Passwords are deliberately not stored. Authentication is handled via
+the SSH agent, the macOS Keychain, or – if no credentials are configured –
+the regular login prompt in Terminal. Only the SSH key path is stored,
+not the key itself.
+
+## Installation (on Mac)
+This app can only be compiled under macOS. The included .dmg is therefore
+created on your Mac – not in the cloud.
+
+Install Xcode Command Line Tools (if not already installed):
+
+bash
+xcode-select --install
+Change to the project directory and start the build script:
+
+bash
+cd MuTTY
+chmod +x build_dmg.sh
+./build_dmg.sh
+At the end, MuTTY.dmg will be located in the project directory. Double-click
+it to open the installer – drag MuTTY.app into the Applications folder, done.
+
+The first time you click “Connect”, macOS will ask for permission to allow
+MuTTY to control Terminal
+(System Settings › Privacy & Security › Automation › MuTTY ›
+enable Terminal). If permission is denied, the app copies the completed
+ssh command to the clipboard as a fallback.
+
+## System Requirements
+macOS 14 (Sonoma) or newer – also works under macOS Tahoe (macOS 26)
+
+Xcode Command Line Tools (for swiftc)
+
+## Project Structure
+text
+MuTTY/
+├── Sources/
+│   ├── MuTTYApp.swift   # App entry point (@main)
+│   ├── SSHProfile.swift         # Data model
+│   ├── ProfileStore.swift       # Persistence (JSON)
+│   ├── TerminalLauncher.swift   # Launches ssh in Terminal.app
+│   ├── ContentView.swift        # Main view (profile list)
+│   └── ProfileEditView.swift    # Profile editor
+├── AppIcon.png                  # Source icon (1024x1024)
+├── generate_icon.py             # Generates AppIcon.png
+├── build_dmg.sh                 # Compiles + creates the .dmg
+└── README.md
+Notes
+The build script exits with a clear message if it is not running under
+macOS.
+
+The app is ad-hoc signed (not with an Apple Developer ID). On the first
+launch, you may need to right-click the app and select “Open”.
